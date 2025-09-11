@@ -8,9 +8,23 @@ class Solution:
     def __init__(self):
         self.res=[]
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if root:
-            self.res.append(root.val)
-            self.preorderTraversal(root.left)
-            self.preorderTraversal(root.right)
+        # if root:
+        #     self.res.append(root.val)
+        #     self.preorderTraversal(root.left)
+        #     self.preorderTraversal(root.right)
 
+        # return self.res
+
+        #iterative
+        if root is None:
+            return []
+        stack=[] # storing refrence dont be confused
+        stack.append(root)
+        while stack:
+            curr=stack.pop()    
+            self.res.append(curr.val)
+            if curr.right is not None: # stack hai n ye pahle andar jaega ..then only you will get left before
+                stack.append(curr.right)
+            if curr.left is not None:
+                stack.append(curr.left)
         return self.res
