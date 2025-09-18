@@ -12,9 +12,11 @@ class Solution:
                 count-=1
 
             if count==0:
-                ele=arr[i+1]
+                ele=arr[i]
+                count=1
         
         #check if it is actually a dominatior or not
+        count=0
         for i in range(len(arr)):
             if arr[i]==ele:
                 count+=1
@@ -23,22 +25,6 @@ class Solution:
         else:
             return -1
                 
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         #have done this using hashing O(n) time complexity and O(n) space complexity
         # n=len(nums)
