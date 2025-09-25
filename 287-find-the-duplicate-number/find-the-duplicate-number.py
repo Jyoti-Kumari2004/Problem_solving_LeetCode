@@ -12,8 +12,7 @@ class Solution:
             s=nums[s]
             f=nums[f]
             if s==f:
-                break
-        return s
+                return s
 
         
 
