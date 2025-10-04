@@ -4,12 +4,10 @@ class Solution:
         ans=[]
         i,j=0,0
         while j<len(nums):
-            if  len(li)==0 or nums[j]<li[-1]:
-                li.append(nums[j])
-            else:
-                while li and nums[j]>li[-1] : 
-                    li.pop()
-                li.append(nums[j])
+            
+            while li and nums[j]>li[-1] : 
+                li.pop()
+            li.append(nums[j])
             
             if k==j-i+1:
                 if len(li)==0:
