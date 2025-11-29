@@ -1,7 +1,7 @@
 class Solution:
     def minOperations(self, nums: List[int], k: int) -> int:
-        sum=0
-        for i in range(len(nums)):
-            sum+=nums[i]
-        return sum%k
-        
+        # sum=0
+        # for i in range(len(nums)):
+        #     sum+=nums[i]
+        # return sum%k
+        return sum(nums)%k
