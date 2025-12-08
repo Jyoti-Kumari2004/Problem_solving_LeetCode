@@ -23,9 +23,7 @@ class Solution:
                     heapq.heappush(pq,(dist[u],u))
                 elif dist[u]==dis+dist[node]:
                     sh_p[u]=(sh_p[u]+sh_p[node])%1000000007
-        for i in range(len(dist)):
-            if dist[i]==float('inf'):
-                dist[i]=-1
+      
         print(sh_p)
         return sh_p[-1]
         
