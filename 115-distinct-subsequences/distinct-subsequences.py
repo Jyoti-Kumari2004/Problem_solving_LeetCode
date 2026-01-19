@@ -13,7 +13,15 @@ class Solution:
         if self.p[i][j]!=-1: 
             return self.p[i][j]
         if s[i-1]==t[j-1]:
-            self.p[i][j]=self.solve(s,t,i-1,j-1)+self.solve(s,t,i-1,j)
+            if self.p[i-1][j-1]!=-1:
+                l=self.p[i-1][j-1]
+            else:
+                l=self.solve(s,t,i-1,j-1)
+            if self.p[i-1][j]!=-1:
+                r=self.p[i-1][j]
+            else:
+                r=self.solve(s,t,i-1,j)
+            self.p[i][j]=l+r
         else:
             self.p[i][j]=self.solve(s,t,i-1,j)
         return self.p[i][j]
