@@ -1,12 +1,21 @@
 class Solution:
-    def rob(self, nums):
-        if len(nums) == 1:
+    def rob(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==1:
             return nums[0]
-
-        def line(arr):
-            prev = curr = 0
-            for v in arr:
-                prev, curr = curr, max(curr, prev + v)
-            return curr
-
-        return max(line(nums[1:]), line(nums[:-1]))
+        if n==2:
+            return max(nums[0],nums[1])
+        return max(self.solve(nums[1:]),self.solve(nums[:n-1]))
+    def solve(self,nums):
+        if len(nums)==0:
+            return 0
+        prev2=0
+        prev1=nums[0]
+        for i in range(1,len(nums)):
+            ch=nums[i]+(prev2 if i>1  else 0)
+            ch2=prev1
+            curr=max(ch,ch2)
+            prev2,prev1=prev1,curr
+        return prev1
+            
+    
