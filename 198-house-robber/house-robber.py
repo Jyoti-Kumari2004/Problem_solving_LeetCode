@@ -1,16 +1,18 @@
 class Solution:
-    def __init__(self):
-        self.t=[-1 for i in range(101)]
+    
     def rob(self, nums: List[int]) -> int:
         return self.solve(nums)
+    # below code is top-down dp approach
     def solve(self,nums):
-        t=[0]*len(nums)
-        t[0]=nums[0]
+        prev2=0
+        prev1=nums[0]
         for i in range(1,len(nums)):
-            ch=nums[i]+(t[i-2] if i>1  else 0)
-            ch2=t[i-1]
-            t[i]=max(ch,ch2)
-        return t[len(nums)-1]
+            ch=nums[i]+(prev2 if i>1  else 0)
+            ch2=prev1
+            curr=max(ch,ch2)
+            prev2=prev1
+            prev1=curr
+        return prev1
 
     #memoiation solution: 
     # def solve(self,nums,i):
