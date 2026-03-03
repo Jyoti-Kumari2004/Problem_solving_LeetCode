@@ -2,7 +2,7 @@ class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         q=[]
         for x,y in points:
-            dis=((x*x)+(y*y))**(0.5)
+            dis=(x*x)+(y*y)
             heapq.heappush(q,[-(abs(dis)),[x,y]])
             if len(q)>k:
                 heapq.heappop(q)
