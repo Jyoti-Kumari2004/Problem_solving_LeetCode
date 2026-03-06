@@ -4,32 +4,63 @@ class Solution:
     def checkValidString(self, s: str) -> bool:
         count=0
         return self.solve(s)
+
         
     #multiple approaches:
+    #5.By maintainy range using min and max : in O(n) time and O(1) space complexity
     def solve(self,s):
-        st1=[]
-        st2=[]
-        for i,ch in enumerate(s):
+        mini=0
+        maxi=0
+        for ch in s:
             if ch=="(":
-                st1.append(i)
-            elif ch=="*":
-                st2.append(i)
+                mini+=1
+                maxi+=1
+            elif ch==")":
+                mini-=1
+                maxi-=1
             else:
-                #")"
-                if st1:
-                    st1.pop()
-                elif st2:
-                    st2.pop()
-                else:
-                    return False
-        while st2 and st1:
-            if st2[-1]>st1[-1]:
-                st1.pop()
-            st2.pop()
-            
-        if len(st1)>0:
+                mini-=1
+                maxi+=1
+            if mini<0:
+                mini=0
+            if maxi<0:
+                return False
+        if mini==0:
+            return True
+        else:
             return False
-        return True
+            
+
+
+
+
+
+
+    #4.using 2 stacks O(n) time and space complexity
+    # def solve(self,s):
+    #     st1=[]
+    #     st2=[]
+    #     for i,ch in enumerate(s):
+    #         if ch=="(":
+    #             st1.append(i)
+    #         elif ch=="*":
+    #             st2.append(i)
+    #         else:
+    #             #")"
+    #             if st1:
+    #                 st1.pop()
+    #             elif st2:
+    #                 st2.pop()
+    #             else:
+    #                 return False
+    #     while st2 and st1:
+    #         if st2[-1]>st1[-1]:
+    #             st1.pop()
+    #         st2.pop()
+            
+    #     if len(st1)>0:
+    #         return False
+    #     return True
 
 
     #3.Top-bottom approach
