@@ -1,8 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range (0,len(nums)):
-            search= target -nums[i]
-            for j in range(i+1,len(nums)):
-                if nums[j]==search:
-                    return [i,j]
-                
+        d=defaultdict(int)
+        for i in range(len(nums)):
+            d[nums[i]]=i
+        for i in range(len(nums)):
+            if target-nums[i] in d and d[target-nums[i]]!=i:
+                return [i,d[target-nums[i]]]
+        return [-1.-1]
+    
