@@ -22,12 +22,12 @@ class Solution:
         if t[ind][buy][k]!=-1:
             return t[ind][buy][k]
         if buy:
-            ch1=-prices[ind]+self.solve(prices,ind+1,0,k+1,t)
+            ch1=prices[ind]+self.solve(prices,ind+1,0,k+1,t)
             ch2=self.solve(prices,ind+1,1,k,t)
             t[ind][buy][k]=max(ch1,ch2)
             return max(ch1,ch2)
         else:
-            ch1=prices[ind]+self.solve(prices,ind+1,1,k,t)
+            ch1=-prices[ind]+self.solve(prices,ind+1,1,k,t)
             ch2=self.solve(prices,ind+1,0,k,t)
             t[ind][buy][k]=max(ch1,ch2)
             return max(ch1,ch2)
