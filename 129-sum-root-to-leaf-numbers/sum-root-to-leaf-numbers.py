@@ -9,26 +9,22 @@ class Solution:
         if root==None:
             return 0
         ans=[0]
-        self.solve(root,ans,"")
+        self.solve(root,ans,0)
         return ans[0]
 
     def solve(self,root,ans,curr_sum):
-        
-        if root.right!=None and root.left==None:
-            curr_sum+=str(root.val)
-            return self.solve(root.right,ans,curr_sum)
-        elif root.right==None and root.left!=None:
-            curr_sum+=str(root.val)
-            return self.solve(root.left,ans,curr_sum)
-        elif root.left==None and root.right==None:
-            curr_sum+=str(root.val)
-            print(curr_sum)
-            ans[0]+=int(curr_sum)
-            return 
+        if root==None:
+            return 0
+        if root!=None:
+            curr_sum = curr_sum * 10 + root.val
+        if root.left==None and root.right==None:
+            ans[0]+=curr_sum
+            return curr_sum
         else:
-            curr_sum+=str(root.val)
             ls=self.solve(root.left,ans,curr_sum)
             rs=self.solve(root.right,ans,curr_sum)
+            return ls+rs
+            
         
         
         
