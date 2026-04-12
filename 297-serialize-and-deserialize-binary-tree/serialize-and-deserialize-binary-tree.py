@@ -6,6 +6,9 @@
 #         self.right = None
 
 class Codec:
+    def __init__(self):
+        pass
+
 
     def serialize(self, root):
         """Encodes a tree to a single string.
@@ -13,21 +16,23 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        if root==None:
-            return ""
-        s=""
         q=deque()
         q.append(root)
+        fin=[]
         while q:
             node=q.popleft()
             if node==None:
-                s+="#,"
+                fin.append("#,")
             else:
-                s+=str(node.val)+","
+                fin.append(str(node.val)+",")
                 q.append(node.left)
                 q.append(node.right)
+        s="".join(fin)
         print(s)
         return s
+
+            
+        
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -35,34 +40,33 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        data=list(map(str,data.split(",")))
-        if data[0]=="#" or data[0]=="":
+        vals=list(map(str,data.split(",")))
+        if vals[0]=="#" or vals[0]==" ":
             return None
-        j=0
+        root=TreeNode(int(vals[0]))
         q=deque()
-        root=TreeNode(int(data[0]))
         q.append(root)
-        
+        j=0
         while q:
             node=q.popleft()
             j+=1
-            if data[j]=="#":
+            if vals[j]=="#":
                 node.left=None
             else:
-                node.left=TreeNode(int(data[j])) 
+                node.left=TreeNode(int(vals[j]))
                 q.append(node.left)
             j+=1
-            if data[j]=="#":
+            if vals[j]=="#":
                 node.right=None
             else:
-                node.right=TreeNode(int(data[j]))
+                node.right=TreeNode(int(vals[j]))
                 q.append(node.right)
         return root
-            
 
-            
+                
 
-
+        
+        
         
 
 # Your Codec object will be instantiated and called as such:
