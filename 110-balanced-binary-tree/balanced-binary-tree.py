@@ -5,18 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.Boo=True
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        self.solve(root)
-        if self.Boo==False:
+        if self.solve(root)==-1:
             return False
-        return True
+        else:
+            return True
+
+
     def solve(self,root):
         if root==None:
             return 0
         ls=self.solve(root.left)
         rs=self.solve(root.right)
+        if ls==-1 or rs==-1:
+            return -1
         if abs(ls-rs)>1:
-            self.Boo=False
-        return max(ls,rs)+1
+            flag=True
+            return -1
+        return 1+max(ls,rs)
+        
+        
